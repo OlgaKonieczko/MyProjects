@@ -9,10 +9,10 @@ namespace Kalkulator
     class Solution
     {
         private double _result;
-        BuildingElements bld = new BuildingElements();
         List<string> _elementsList = new List<string>();
-        public List<string> ElementsList { get => _elementsList; set => _elementsList = value; }
-        public double Result { get => _result; set => _result = value; }
+
+        public double Result { get => _result; private set => _result = value; }
+
 
         public Solution(List<string> elemntsList)
         {
@@ -20,35 +20,40 @@ namespace Kalkulator
         }
 
 
-        //zmienic na switch
         public void MathFunction()
         {
             for (int i = 0; i < _elementsList.Count; i++)
             {
-                if (_elementsList[i] == "+")
+
+                switch (_elementsList[i])
                 {
-                    _result = Convert.ToDouble(_elementsList[i - 1]) + Convert.ToDouble(_elementsList[i + 1]);
-                    _elementsList[i + 1] = _result.ToString();
+                    case "+":
+                        _result = Convert.ToDouble(_elementsList[i - 1]) + Convert.ToDouble(_elementsList[i + 1]);
+                        _elementsList[i + 1] = _result.ToString();
+                        break;
+
+                    case "-":
+                        _result = Convert.ToDouble(_elementsList[i - 1]) - Convert.ToDouble(_elementsList[i + 1]);
+                        _elementsList[i + 1] = _result.ToString();
+                        break;
+
+                    case "*":
+                        _result = Convert.ToDouble(_elementsList[i - 1]) * Convert.ToDouble(_elementsList[i + 1]);
+                        _elementsList[i + 1] = _result.ToString();
+                        break;
+
+                    case "/":
+                        _result = Convert.ToDouble(_elementsList[i - 1]) / Convert.ToDouble(_elementsList[i + 1]);
+                        _elementsList[i + 1] = _result.ToString();
+                        break;
+
+                    case "=":
+                       _elementsList.Clear();
+                       _elementsList.Add(_result.ToString());
+                        break;
+
                 }
 
-                else if(_elementsList[i] == "-")
-                {
-                    _result = Convert.ToDouble(_elementsList[i - 1]) - Convert.ToDouble(_elementsList[i + 1]);
-                    _elementsList[i + 1] = _result.ToString();
-                }
-
-                else if (_elementsList[i] =="*")
-                {
-                    _result = Convert.ToDouble(_elementsList[i - 1]) * Convert.ToDouble(_elementsList[i + 1]);
-                    _elementsList[i + 1] = _result.ToString();
-                }
-
-                else if (_elementsList[i] == "/")
-                {
-                    _result = Convert.ToDouble(_elementsList[i - 1]) / Convert.ToDouble(_elementsList[i + 1]);
-                    _elementsList[i + 1] = _result.ToString();
-                }
-              
             }
 
         }

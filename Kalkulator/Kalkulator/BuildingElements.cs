@@ -17,10 +17,9 @@ namespace Kalkulator
 
         public void SingleElement(char a)
         {
+
             if (a != '=' && a != '+' && a != '-' && a != '*' && a != '/' && a != 'C')
-            {
                 _temp.Append(a);
-            }
 
             else if (a == 'C')
             {
@@ -31,23 +30,12 @@ namespace Kalkulator
             else 
             {
                 if (_temp.Length > 0)
-                {
                     _elementsList.Add(_temp.ToString());
-                }
 
                 _elementsList.Add(a.ToString());
                 _temp.Clear();
             }
         }
-
-        public void Equals(double result)
-        {
-            _elementsList.Clear();
-            _elementsList.Add(result.ToString());
-        }
-
-
-
 
     }
 
